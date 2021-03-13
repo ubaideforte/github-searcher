@@ -1,18 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import store from './app/store';
-import { Provider } from 'react-redux';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import { render } from "react-dom";
+import "./index.css";
+import App from "./App";
+import store from "./configStore";
+import { Provider } from "react-redux";
+import * as serviceWorker from "./serviceWorker";
+import { QueryClient, QueryClientProvider } from "react-query";
 
-ReactDOM.render(
-  <React.StrictMode>
+const query = new QueryClient();
+
+render(
+  <QueryClientProvider client={query}>
     <Provider store={store}>
       <App />
     </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </QueryClientProvider>,
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
