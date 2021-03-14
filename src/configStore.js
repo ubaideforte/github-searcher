@@ -10,6 +10,7 @@ import homeReducer from "./reducers/homeReducer";
 const store = configureStore({
   reducer: {
     home: homeReducer,
+    // can add more reducer here
   },
 });
 
