@@ -14,19 +14,25 @@ const { Option } = Select;
 const Home = (props) => {
   const { users, storeUser, repos, storeRepos } = props;
 
-  const [userName, setUserName] = useState("");
+  const [searchValue, setSearchValue] = useState("");
+  /**
+   * To set the search type, either user or repositories.
+   */
   const [searchType, setSearchType] = useState("fullname");
 
   // Query to get data all users
   const { refetch: getUserQuery, isFetching } = useQuery(
     "getAllUsers",
-    () => getUsersApi(userName, searchType),
+    () => getUsersApi(searchValue, searchType),
     {
       onSuccess: (data) => {
         console.log("Users data", data);
         storeUser(data.items);
       },
       onError: (err) => cogoToast.error(err),
+      /**
+       * this property is set to false to avoid auto run on component mount
+       */
       enabled: false,
     }
   );
@@ -34,7 +40,7 @@ const Home = (props) => {
   // Query to get all repositories
   const { refetch: getRepoQuery, isFetching: getRepoLoader } = useQuery(
     "getAllRepositories",
-    () => getAllRepositories(userName),
+    () => getAllRepositories(searchValue),
     {
       onSuccess: (data) => {
         console.log("Repositories data", data);
@@ -67,13 +73,18 @@ const Home = (props) => {
             <Col span={24}>
               <Input
                 placeholder="Search"
-                value={userName}
-                onChange={(e) => setUserName(e.target.value)}
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
+                onKeyPress={(e) =>
+                  e.which === 13 &&
+                  document.getElementById("find-button").click()
+                }
               />
             </Col>
             <Col span={24}>
               <Button
                 block
+                id="find-button"
                 loading={isFetching || getRepoLoader}
                 onClick={() =>
                   searchType === "fullname" ? getUserQuery() : getRepoQuery()
@@ -87,17 +98,17 @@ const Home = (props) => {
       </Row>
 
       {searchType === "fullname" ? (
-        <section className="users-list">
+        <section className="list">
           {users.length === 0 ? (
             <h1>No Users Found</h1>
           ) : (
-            <Row justify="space-around" gutter={[12, 12]} align="middle">
+            <Row gutter={[12, 12]} align="middle">
               {users.map((item, index) => (
-                <Col xs={24} sm={16} md={12} lg={12} xl={8}>
+                <Col key={index} xs={24} sm={16} md={12} lg={12} xl={8}>
                   <UserCard
-                    key={index}
                     name={item.login}
                     avatar={item.avatar_url}
+                    repos_url={item.repos_url}
                   />
                 </Col>
               ))}
@@ -105,11 +116,11 @@ const Home = (props) => {
           )}
         </section>
       ) : (
-        <section className="users-list">
+        <section className="list">
           {repos.length === 0 ? (
             <h1>No Repositories Found</h1>
           ) : (
-            <Row justify="space-around" gutter={[12, 12]} align="middle">
+            <Row gutter={[12, 12]} align="middle">
               {repos.map((item, index) => (
                 <Col key={index} xs={24} sm={16} md={12} lg={12} xl={8}>
                   <RepoCard

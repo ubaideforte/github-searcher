@@ -21,3 +21,14 @@ export const getAllRepositories = async (repoName) => {
     return err;
   }
 };
+
+export const getUserRepositories = async (userName) => {
+  try {
+    const res = await axios({
+      url: `https://api.github.com/users/${userName}/repos`,
+    });
+    return res.data;
+  } catch (err) {
+    return err;
+  }
+};

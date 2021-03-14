@@ -3,6 +3,7 @@ import "./App.css";
 import "antd/dist/antd.css";
 import Home from "./views/home";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Repositories from "./views/Repositories";
 
 const App = () => {
   return (
@@ -10,6 +11,10 @@ const App = () => {
       <Switch>
         <Route exact path="/">
           <Home />
+        </Route>
+
+        <Route exact path="/repositories">
+          <Repositories />
         </Route>
       </Switch>
     </BrowserRouter>

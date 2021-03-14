@@ -1,27 +1,26 @@
 import React from "react";
 import { Row, Col } from "antd";
+import { Link } from "react-router-dom";
 
 const UserCard = (props) => {
   const { name, avatar } = props;
+
   return (
-    <Row
-      style={{
-        padding: 16,
-        border: "2px solid #f4acf4",
-        borderRadius: 4,
-        fontSize: 20,
-      }}
-      justify="space-around"
-    >
-      <Col sm={24} md={6} lg={6}>
-        <img
-          src={avatar}
-          alt="USER_AVATAR"
-          style={{ width: 80, height: 80, borderRadius: "50%" }}
-        />
+    <Row className="card" justify="space-around">
+      <Col sm={6} md={6} lg={6}>
+        <img src={avatar} alt="user-avatar" className="card-image" />
       </Col>
-      <Col sm={24} md={16} lg={16}>
-        <p>{name}</p>
+      <Col sm={17} md={16} lg={16}>
+        <Row>
+          <Col span={24}>
+            <p>{name}</p>
+          </Col>
+          <Col span={24}>
+            <Link to={{ pathname: "/repositories", state: { userName: name } }}>
+              <p className="text-small">Repositories</p>
+            </Link>
+          </Col>
+        </Row>
       </Col>
     </Row>
   );
