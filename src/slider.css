@@ -1,4 +1,4 @@
-.ant-slider-rail{
+/* .ant-slider-rail{
     color: #fff;
     background-color: #fff;
     border-radius: 0px;
@@ -19,7 +19,7 @@
 }
 
 .ant-slider-handle{
-    /* visibility: hidden; */
+ 
     cursor: e-resize;
     background-color: transparent;
     border: none;
@@ -42,7 +42,7 @@
 
 .ant-slider-mark-text{
     display: none;
-}
+} */
 
 /* Second */
 .se{
@@ -52,7 +52,7 @@
     right: 0;
     z-index: 500;
 }
-.se .ant-slider-rail{
+/* .se .ant-slider-rail{
     background-color: transparent;
     display: none;
 }
@@ -63,7 +63,7 @@
 
 .se .ant-slider-dot, .th .ant-slider-dot{
     visibility: hidden;
-}
+} */
 
 /* THird */
 .th{
@@ -72,6 +72,7 @@
     left: 0;
     right: 0;
 }
+/* 
 .th .ant-slider-rail{
     background-color: red;
     height: 0px;
@@ -90,5 +91,5 @@
 }
 
 .th .ant-slider-handle{
-    height: 32px    ;
-}
+    height: 32px    ; 
+}*/

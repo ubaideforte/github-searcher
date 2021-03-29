@@ -2,9 +2,13 @@ import React from "react";
 import { Slider } from "antd";
 import "./slider.css";
 
+import MainSlider from "./components/slider/mainSlider";
+import SecondSlider from "./components/slider/secondSlider";
+import ThirdSlider from "./components/slider/thirdSlider";
+
 const SliderComponent = (props) => {
   return (
-    <>
+    <div style={{ backgroundColor: "tomato" }}>
       <div
         style={{
           height: "100vh",
@@ -17,42 +21,59 @@ const SliderComponent = (props) => {
           style={{
             display: "block",
             width: "80vw",
+            height: "100px",
             position: "absolute",
             zIndex: 400,
-            height: "100px",
           }}
         >
-          <Slider
-            min={0}
-            max={210}
-            step={15}
-            marks={marks}
-            range={{ draggableTrack: true }}
-            defaultValue={[0, 0]}
-          />
-        </section>
-
-        <section
-          style={{
-            display: "block",
-            width: "80vw",
-            height: "100px",
-            position: "absolute",
-            zIndex: 500,
-          }}
-        >
-          <Slider
+          <MainSlider
             className="se"
             min={0}
             max={210}
             range
-            // step={15}
-            // marks={marks}
+            step={15}
+            marks={marks}
             range={{ draggableTrack: true }}
-            defaultValue={[30, 90]}
+            defaultValue={[30, 180]}
           />
 
-          <Slider
+          <SecondSlider
+            className="se"
+            min={0}
+            max={210}
+            range
+            step={15}
+            marks={marks}
+            range={{ draggableTrack: true }}
+            defaultValue={[30, 90]}
+            color="cyan"
+          />
+
+          <SecondSlider
+            className="se"
+            min={0}
+            max={210}
+            range
+            step={15}
+            marks={marks}
+            range={{ draggableTrack: true }}
+            defaultValue={[30, 90]}
+            onChange={(e) => console.log(e)}
+          />
+
+          <ThirdSlider
+            className="th"
+            min={0}
+            max={210}
+            range
+            step={15}
+            // marks={marks}
+            range={{ draggableTrack: true }}
+            defaultValue={[0, 210]}
+            color="magenta"
+          />
+
+          {/* <Slider
             className="th"
             min={0}
             max={210}
@@ -60,10 +81,10 @@ const SliderComponent = (props) => {
             // marks={marks}
             range={{ draggableTrack: true }}
             defaultValue={[60, 120]}
-          />
+          /> */}
         </section>
       </div>
-    </>
+    </div>
   );
 };
 
