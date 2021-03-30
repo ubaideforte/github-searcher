@@ -5,7 +5,7 @@ import { Slider } from "antd";
 const MainSlider = styled(Slider)`
   .ant-slider-rail {
     color: #fff;
-    background-color: #acacac !important;
+    background-color: #dbdbdb !important;
     border-radius: 0px;
     height: 64px;
   }
@@ -25,9 +25,9 @@ const MainSlider = styled(Slider)`
   }
 
   .ant-slider-dot {
-    background-color: #000;
-    color: #000;
-    border-color: #000;
+    background-color: #b2b2b2;
+    color: #b2b2b2;
+    border-color: #b2b2b2;
     border-width: 0px;
     width: 1px;
     border-radius: 0;
